@@ -1,6 +1,7 @@
 const {request, get} = require('https');
 
-const req = request('https://www.google.com', (res) => {
+// get does same thing as request request
+get('https://www.google.com', (res) => {
     //event emitter
     res.on('data', (chunk) => {
         console.log(`Data Chunk: ${chunk}`);
@@ -8,19 +9,21 @@ const req = request('https://www.google.com', (res) => {
     res.on('end', ()=>{
         console.log('No more Data');
     })
-})
+}) 
+// *** no need to use end() when using get
 
-// get same as request
-const req2 = get('https://www.google.com', (res) => {
-    //event emitter
-    res.on('data', (chunk) => {
-        console.log(`Data Chunk: ${chunk}`);
-    })
-    res.on('end', ()=>{
-        console.log('No more Data');
-    })
-})
 
-req.end();  // o/p same as http but is now encrypted data, since https provide security
+// const req = request('https://www.google.com', (res) => {
+//     //event emitter
+//     res.on('data', (chunk) => {
+//         console.log(`Data Chunk: ${chunk}`);
+//     })
+//     res.on('end', ()=>{
+//         console.log('No more Data');
+//     })
+// })
 
-req2.end()
+
+
+// req.end();  // o/p same as http but is now encrypted data, since https provide security
+
